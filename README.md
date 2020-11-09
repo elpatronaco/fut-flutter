@@ -1,5 +1,3 @@
-# Peliculas
+# FIFA Ultimate Team Viewer
 
-Este es el repositorio del proyecto de películas de mi curso de Flutter
-
-https://fernando-herrera.com/#/home
+Esta aplicación permite ver las cartas del FIFA UT 21 con la última información actualizada.

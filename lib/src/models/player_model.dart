@@ -20,14 +20,12 @@ class Player {
   String firstName;
   String lastName;
   String commonName;
-  dynamic age;
   int league;
   int nation;
   int club;
   int rarity;
   String position;
   int rating;
-  int ratingAverage;
   int pace;
   int shooting;
   int passing;
@@ -40,14 +38,12 @@ class Player {
     firstName = json['firstName'].toString();
     lastName = json['lastName'].toString();
     commonName = json['commonName'].toString();
-    age = json['age'];
     league = json['league'];
     nation = json['nation'];
     club = json['club'];
     rarity = json['rarity'];
     position = json['position'].toString();
     rating = json['rating'];
-    ratingAverage = json['ratingAverage'];
     pace = json['pace'];
     shooting = json['shooting'];
     passing = json['passing'];
@@ -61,14 +57,12 @@ class Player {
       this.firstName,
       this.lastName,
       this.commonName,
-      this.age,
       this.league,
       this.nation,
       this.club,
       this.rarity,
       this.position,
       this.rating,
-      this.ratingAverage,
       this.pace,
       this.shooting,
       this.passing,
@@ -76,14 +70,27 @@ class Player {
       this.defending,
       this.physicality});
 
-  getImage() async {
+  getAvatarImage() {
+    return getImageUrl(this.id.toString(), 'players',
+        "https://cdn2.iconfinder.com/data/icons/avatar-profile/449/avatar_user_default_contact_profile_male-512.png");
+  }
+
+  getClubImage() {
+    return getImageUrl(this.club.toString(), "clubs", "https://icons.iconarchive.com/icons/giannis-zographos/spanish-football-club/256/FC-Barcelona-icon.png");
+  }
+
+  getNationImage() {
+    return getImageUrl(this.nation.toString(), "nations", "https://icons.iconarchive.com/icons/giannis-zographos/spanish-football-club/256/FC-Barcelona-icon.png");
+  }
+
+  Future<String> getImageUrl(String pk, String name, String defImage) async {
     final response = await http.get(
-        "https://futdb.app/api/players/${this.id}/image",
+        "https://futdb.app/api/${name}/${this.id}/image",
         headers: {"api_key": "16723ca0-91e1-4ab8-b93b-36ab6fde4723"});
     if (response.statusCode == 200) {
-      return "https://futdb.app/api/players/${this.id}/image";
+      return "https://futdb.app/api/${name}/${this.id}/image";
     } else {
-      return "https://cdn2.iconfinder.com/data/icons/avatar-profile/449/avatar_user_default_contact_profile_male-512.png";
+      return defImage;
     }
   }
 }
