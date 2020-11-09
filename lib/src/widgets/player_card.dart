@@ -1,56 +1,65 @@
 import 'package:flutter/material.dart';
 import 'package:peliculas/src/models/player_model.dart';
 
-const _cardHeight = 600.0;
-const _cardWeight = _cardHeight * 0.6625;
-const _firstRowHeight = _cardHeight * 0.51;
-const _secondRowHeight = _cardHeight * 0.045;
-const _thirdRowHeight = _cardHeight * 0.45;
-const _statsRow_Height = _thirdRowHeight * 0.5;
-const _margin1 = _cardHeight * 0.00;
-const _margin5 = _cardHeight * 0.0125;
-const _margin8 = _cardHeight * 0.02;
-const _margin10 = _cardHeight * 0.025;
-const _margin11 = _cardHeight * 0.0275;
-const _margin60 = _cardHeight * 0.16;
-const _margin64 = _cardHeight * 0.18;
-const _margin70 = _cardHeight * 0.21;
-const _fontSize20 = _cardHeight * 0.05;
-const _fontSize22 = _cardHeight * 0.055;
-const _fontSize24 = _cardHeight * 0.065;
-const _fontSize26 = _cardHeight * 0.08;
-const _flagDimension = _cardHeight * 0.0875;
-const _playerImageHeight = _cardHeight * 0.3375;
-
 class PlayerCard extends StatelessWidget {
-  //PlayerCard(@required this.data);
-  @override
-  PlayerCard();
 
-  Player data = new Player(commonName: 'Cristiano', rating: 89);
+  @override
+  PlayerCard(this.data);
+
+  final Player data;
+
+  final Player testData = new Player(id: 14054, commonName: 'Ronaldo', rating: 89, firstName: 'Cristiano', lastName: 'Ronaldo', club: 112658, defending: 60, dribbling: 96, league: 2118, nation: 54, pace: 95, passing: 93, physicality: 76, position: 'CAM', rarity: 12, shooting: 96);
 
   Widget build(BuildContext context) {
+
+    final _widgetSize = MediaQuery.of(context).size;
+    final double _cardHeight = _widgetSize.height.toDouble();
+    final _cardWeight = _cardHeight * 0.6625;
+
     return Container(
       height: _cardHeight,
       width: _cardWeight,
-      child: _stack(this.data),
+      child: _stack(this.testData, _cardHeight),
     );
   }
 }
 
-const statsValueStyle = TextStyle(
-    fontFamily: 'NFL',
-    fontWeight: FontWeight.bold,
-    fontSize: _fontSize22,
-    color: _fontColor);
-const statsLabelStyle = TextStyle(
-    fontFamily: 'NFL',
-    fontWeight: FontWeight.normal,
-    fontSize: _fontSize22,
-    color: _fontColor);
-const _fontColor = Color(0xff6E4011);
 
-Stack _stack(Player data) {
+
+Stack _stack(Player data, final double initHeight) {
+
+  final double _cardHeight = initHeight;
+  final _firstRowHeight = _cardHeight * 0.51;
+  final _secondRowHeight = _cardHeight * 0.045;
+  final _thirdRowHeight = _cardHeight * 0.45;
+  final _statsRow_Height = _thirdRowHeight * 0.5;
+  final _margin1 = _cardHeight * 0.00;
+  final _margin5 = _cardHeight * 0.0125;
+  final _margin8 = _cardHeight * 0.02;
+  final _margin10 = _cardHeight * 0.025;
+  final _margin11 = _cardHeight * 0.0275;
+  final _margin60 = _cardHeight * 0.16;
+  final _margin64 = _cardHeight * 0.18;
+  final _margin70 = _cardHeight * 0.21;
+  final _fontSize20 = _cardHeight * 0.05;
+  final _fontSize22 = _cardHeight * 0.055;
+  final _fontSize24 = _cardHeight * 0.065;
+  final _fontSize26 = _cardHeight * 0.08;
+  final _flagDimension = _cardHeight * 0.0875;
+  final _playerImageHeight = _cardHeight * 0.3375;
+
+  const _fontColor = Color(0xff6E4011);
+  final statsValueStyle = TextStyle(
+      fontFamily: 'NFL',
+      fontWeight: FontWeight.bold,
+      fontSize: _fontSize22,
+      color: _fontColor);
+  final statsLabelStyle = TextStyle(
+      fontFamily: 'NFL',
+      fontWeight: FontWeight.normal,
+      fontSize: _fontSize22,
+      color: _fontColor);
+
   return Stack(
     children: [
       Container(
@@ -62,7 +71,7 @@ Stack _stack(Player data) {
         children: [
           Container(
             height: _firstRowHeight,
-            padding: const EdgeInsets.symmetric(horizontal: _margin11),
+            padding: EdgeInsets.symmetric(horizontal: _margin10),
             child: Row(
               children: [
                 Container(
@@ -81,7 +90,7 @@ Stack _stack(Player data) {
                               fontWeight: FontWeight.normal,
                               fontSize: _fontSize26,
                               color: _fontColor)),
-                      Text("ED",
+                      Text(data.position.toString(),
                           style: TextStyle(
                               fontFamily: 'NFL',
                               fontWeight: FontWeight.normal,
@@ -116,7 +125,7 @@ Stack _stack(Player data) {
             child: Container(
               margin: EdgeInsets.only(right: _margin11, left: _margin64),
               child: Padding(
-                padding: const EdgeInsets.all(_margin1),
+                padding: EdgeInsets.all(_margin1),
                 child: Center(
                     child: Text(
                   data.commonName.toString(),
@@ -146,9 +155,9 @@ Stack _stack(Player data) {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Text("99", style: statsValueStyle),
-                          Text("99", style: statsValueStyle),
-                          Text("99", style: statsValueStyle),
+                          Text(data.pace.toString(), style: statsValueStyle),
+                          Text(data.shooting.toString(), style: statsValueStyle),
+                          Text(data.passing.toString(), style: statsValueStyle),
                         ],
                       ),
                       Container(
@@ -157,8 +166,8 @@ Stack _stack(Player data) {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Text("PAC", style: statsLabelStyle),
-                            Text("SHO", style: statsLabelStyle),
+                            Text("RIT", style: statsLabelStyle),
+                            Text("TIR", style: statsLabelStyle),
                             Text("PAS", style: statsLabelStyle),
                           ],
                         ),
@@ -173,9 +182,9 @@ Stack _stack(Player data) {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Text("99", style: statsValueStyle),
-                            Text("99", style: statsValueStyle),
-                            Text("10", style: statsValueStyle),
+                            Text(data.dribbling.toString(), style: statsValueStyle),
+                            Text(data.defending.toString(), style: statsValueStyle),
+                            Text(data.physicality.toString(), style: statsValueStyle),
                           ],
                         ),
                       ),
@@ -185,9 +194,9 @@ Stack _stack(Player data) {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Text("DRI", style: statsLabelStyle),
+                            Text("REG", style: statsLabelStyle),
                             Text("DEF", style: statsLabelStyle),
-                            Text("PHY", style: statsLabelStyle),
+                            Text("FIS", style: statsLabelStyle),
                           ],
                         ),
                       ),
