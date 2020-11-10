@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'FUT Viewer',
       initialRoute: '/',
-      routes: {'/': (BuildContext context) => PlayerCard(testData)},
+      routes: {'/': (BuildContext context) => HomePage()},
     );
   }
 }
