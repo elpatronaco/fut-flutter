@@ -2,16 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:peliculas/src/models/player_model.dart';
 
 class PlayerCard extends StatelessWidget {
-
   @override
   PlayerCard(this.data);
 
   final Player data;
 
-  final Player testData = new Player(id: 14054, commonName: 'Ronaldo', rating: 89, firstName: 'Cristiano', lastName: 'Ronaldo', club: 112658, defending: 60, dribbling: 96, league: 2118, nation: 54, pace: 95, passing: 93, physicality: 76, position: 'CAM', rarity: 12, shooting: 96);
-
   Widget build(BuildContext context) {
-
     final _widgetSize = MediaQuery.of(context).size;
     final double _cardHeight = _widgetSize.height.toDouble();
     final _cardWeight = _cardHeight * 0.6625;
@@ -19,15 +15,12 @@ class PlayerCard extends StatelessWidget {
     return Container(
       height: _cardHeight,
       width: _cardWeight,
-      child: _stack(this.testData, _cardHeight),
+      child: _stack(this.data, _cardHeight),
     );
   }
 }
 
-
-
 Stack _stack(Player data, final double initHeight) {
-
   final double _cardHeight = initHeight;
   final _firstRowHeight = _cardHeight * 0.51;
   final _secondRowHeight = _cardHeight * 0.045;
@@ -156,7 +149,8 @@ Stack _stack(Player data, final double initHeight) {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Text(data.pace.toString(), style: statsValueStyle),
-                          Text(data.shooting.toString(), style: statsValueStyle),
+                          Text(data.shooting.toString(),
+                              style: statsValueStyle),
                           Text(data.passing.toString(), style: statsValueStyle),
                         ],
                       ),
@@ -182,9 +176,12 @@ Stack _stack(Player data, final double initHeight) {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Text(data.dribbling.toString(), style: statsValueStyle),
-                            Text(data.defending.toString(), style: statsValueStyle),
-                            Text(data.physicality.toString(), style: statsValueStyle),
+                            Text(data.dribbling.toString(),
+                                style: statsValueStyle),
+                            Text(data.defending.toString(),
+                                style: statsValueStyle),
+                            Text(data.physicality.toString(),
+                                style: statsValueStyle),
                           ],
                         ),
                       ),

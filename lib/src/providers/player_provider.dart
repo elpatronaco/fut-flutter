@@ -1,5 +1,6 @@
 import 'package:http/http.dart' as http;
 import 'package:peliculas/src/models/player_model.dart';
+import 'package:peliculas/src/widgets/snackbar.dart';
 
 import 'dart:convert';
 import 'dart:async';
@@ -22,15 +23,16 @@ class PlayersProvider {
 
   Future<List<Player>> _processResponse(Uri url) async {
     final resp = await http.get(url);
-    final decodedData = json.decode(resp.body);
-    final players = new Players.fromJsonList(decodedData['results']);
+    final players = new Players.fromJsonList(json.decode(resp.body));
     return players.items;
   }
 
   Future<List<Player>> getAll() async {
     final url = Uri.https(
-        _url, "players?page${_page.toString()}", {'api_key': _apikey});
+        _url, "players?page=${_page.toString()}", {'x-auth-token': _apikey});
     final resp = await _processResponse(url);
     _playersList.addAll(resp);
+    _page++;
+    return await _processResponse(url);
   }
 }

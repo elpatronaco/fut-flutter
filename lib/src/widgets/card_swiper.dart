@@ -6,15 +6,13 @@ import 'package:peliculas/src/widgets/card_swiper.dart';
 import 'package:peliculas/src/widgets/player_card.dart';
 
 class CardSwiper extends StatelessWidget {
-  CardSwiper(this.players);
-
   final List<Player> players;
+
+  CardSwiper(this.players);
 
   @override
   Widget build(BuildContext context) {
-    final _screenSize = MediaQuery
-        .of(context)
-        .size;
+    final _screenSize = MediaQuery.of(context).size;
 
     return Container(
       padding: EdgeInsets.only(top: 10.0),
@@ -24,8 +22,8 @@ class CardSwiper extends StatelessWidget {
         itemHeight: _screenSize.height * 0.5,
         itemBuilder: (BuildContext context, int index) {
           return ClipRRect(
-              borderRadius: BorderRadius.circular(20.0),
-              child: PlayerCard(players[index]),
+            borderRadius: BorderRadius.circular(20.0),
+            child: PlayerCard(players[index]),
           );
         },
         itemCount: players.length,
